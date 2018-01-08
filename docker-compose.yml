@@ -1,0 +1,30 @@
+version: "3"
+services:
+  nginx:
+    container_name: torii-nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+  webpack:
+    container_name: torii-webpack
+    image: node:8.9
+    ports:
+      - "5001:5001"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c "npm install && npm start"
+  api:
+    container_name: torii-api
+    image: python:3.6.3
+    environment:
+      - FLASK_APP=/app/api/app.py
+      - FLASK_DEBUG=1
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app:ro
+    working_dir: /app
+    command: bash -c "pip install -r requirements.txt && flask run --host=0.0.0.0"
