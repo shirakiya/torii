@@ -28,15 +28,18 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          "presets": [
-            ["env", {
-              "targets": {
-                "browsers": [
-                  "last 2 versions",
+          'presets': [
+            ['env', {
+              'targets': {
+                'browsers': [
+                  'last 2 versions',
                 ],
               },
             }],
-            "react",
+            'react',
+          ],
+          'plugins': [
+            'babel-plugin-transform-object-rest-spread',
           ],
         },
       },

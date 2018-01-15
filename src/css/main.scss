@@ -1,0 +1,28 @@
+body {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1rem;
+}
+
+footer {
+  border-top: 1px solid lightgray;
+  margin-top: 20px;
+  padding: 8px 0;
+}
+
+textarea {
+  &.fixed {
+    resize: none;
+  }
+}
+
+.input-field-container {
+  margin-top: 20px;
+}
+
+.result-field-container {
+  margin-top: 20px;
+
+  .result-field-content {
+    margin-top: 15px;
+  }
+}

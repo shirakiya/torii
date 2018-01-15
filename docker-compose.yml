@@ -10,6 +10,8 @@ services:
   webpack:
     container_name: torii-webpack
     image: node:8.9
+    environment:
+      - NODE_ENV=development
     ports:
       - "5001:5001"
     volumes:

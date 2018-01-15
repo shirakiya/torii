@@ -1,7 +1,17 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { Provider } from 'react-redux';
+import configureStore from './configureStore.js';
+import App from './App.jsx';
+import 'bootstrap';
+import './../css/bootstrap_united.css';
+import './../css/main.scss';
+
+const store = configureStore();
 
 ReactDom.render(
-  <h1>Hello, React</h1>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
