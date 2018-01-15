@@ -19,9 +19,6 @@ const NavBar = () => (
       </button>
       <div className="collapse navbar-collapse" id="navbar-content">
         <ul className="navbar-nav mr-auto">
-          <li className="navbar-item">
-            <a className="nav-link" href="/">How to use</a>
-          </li>
           <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
