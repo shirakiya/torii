@@ -1,7 +1,10 @@
+import json
+import traceback
 from flask import Flask, request, make_response, jsonify
 from flask_cors import CORS
 from jinja2 import TemplateError
 
+from logger import logger
 from exceptions import ContextValueError
 from rendering import render
 
@@ -13,7 +16,13 @@ ERROR_TYPE_CONTEXT = 'context'
 ERROR_TYPE_OTHER = 'other'
 
 
+def log_error():
+    tb = traceback.format_exc().replace('\n', '\t')
+    logger.error(tb)
+
+
 def make_error_response(error_message, error_class_name, error_type=ERROR_TYPE_OTHER):
+    log_error()
     return make_response(jsonify({
         'error_class': error_class_name,
         'message': error_message,
@@ -25,6 +34,7 @@ def make_error_response(error_message, error_class_name, error_type=ERROR_TYPE_O
 def render_jinja():
     try:
         params = request.json
+        logger.info(json.dumps(params))
 
         template_text = params['statement']
         context_text = params['context']
@@ -34,7 +44,6 @@ def render_jinja():
         return jsonify({
             'rendered': rendered,
         })
-    # TODO: logging
     except ContextValueError as e:
         return make_error_response(str(e), 'ValueError', ERROR_TYPE_CONTEXT)
     except TemplateError as e:
