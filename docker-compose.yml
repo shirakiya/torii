@@ -6,7 +6,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./index_dev.html:/usr/share/nginx/html/index.html:ro
   webpack:
     container_name: torii-webpack
     image: node:8.9

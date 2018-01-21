@@ -9,6 +9,7 @@ module.exports = merge(common, {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('production'),
+        'API_URL': JSON.stringify(process.env.API_URL),
       },
     }),
     new ExtractTextPlugin({

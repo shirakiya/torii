@@ -8,3 +8,4 @@ __pycache__/
 .envrc
 .python-version
 node_modules
+app.js

@@ -2,8 +2,7 @@ import axios from 'axios';
 import { URL_PRODUCTION, URL_DEVELOPMENT } from './../constants/commons.js';
 
 function getBaseURL() {
-  const env = process.env.NODE_ENV;
-  return (env === 'production') ? URL_PRODUCTION : URL_DEVELOPMENT;
+  return (process.env.NODE_ENV === 'production') ? URL_PRODUCTION : URL_DEVELOPMENT;
 }
 
 function getAxios() {
