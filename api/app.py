@@ -9,7 +9,10 @@ from exceptions import ContextValueError
 from rendering import render
 
 app = Flask(__name__)
-CORS(app, origins=r'http://localhost.*')
+CORS(app, origins=[
+    r'http://localhost.*',
+    r'https?://torii.shirakiya.com',  # Change URL if you want to host site yourself.
+])
 
 ERROR_TYPE_TEMPLATE = 'template'
 ERROR_TYPE_CONTEXT = 'context'
