@@ -76,7 +76,7 @@ class InputField extends React.Component {
               <div className="card context-container">
                 <div className="card-body">
                   <div className="form-group">
-                    <label htmlFor="context-input" data-tip data-for="context-object-description">Context object</label>
+                    <h5 data-tip data-for="context-object-description">Context object</h5>
                     <ReactTooltip id="context-object-description">
                       Input Python dict object
                     </ReactTooltip>
