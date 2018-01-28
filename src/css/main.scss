@@ -15,8 +15,16 @@ textarea {
   }
 }
 
+#top-message {
+  margin: 10px 0 15px;
+}
+
 .input-field-container {
   margin-top: 20px;
+
+  .submit {
+    margin-top: 5px;
+  }
 }
 
 .result-field-container {

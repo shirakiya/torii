@@ -13,6 +13,14 @@ const App = ({ template, system, error, ...other }) => {
     <div id="main">
       <NavBar />
       <div className="container">
+        <div id="top-message">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">What&rsquo;s Torii?</h5>
+              Torii(鳥居) is the testing tool for Jinja2. You can test or use Jinja2 by trial with Torii.
+            </div>
+          </div>
+        </div>
         <InputField
           statement={template.statement}
           context={template.context}

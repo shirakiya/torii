@@ -106,7 +106,7 @@ class InputField extends React.Component {
               </div>
             </div>
           </div>
-          <div className="text-center">
+          <div className="text-center submit">
             <button
               type="submit"
               className="btn btn-primary btn-lg"
