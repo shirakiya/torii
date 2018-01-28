@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureStore from './configureStore.js';
 import App from './App.jsx';
 import 'bootstrap';
+import 'codemirror/lib/codemirror.css';
 import './../css/bootstrap_united.css';
 import './../css/main.scss';
 

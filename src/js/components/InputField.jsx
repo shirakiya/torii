@@ -1,58 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
+import CodeMirror from 'react-codemirror';
+import 'codemirror/mode/jinja2/jinja2';
+import 'codemirror/mode/python/python';
+import 'codemirror/addon/display/placeholder';
 
 
 class InputField extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       statement: this.props.statement,
       context: this.props.context,
     };
   }
 
-  tab2space(e, updateStateKey) {
-    if (e.key === 'Tab' && e.keyCode !== 229) {
-      e.preventDefault();
-
-      const element = e.target;
-
-      const text = element.value;
-      const start = element.selectionStart;
-      const end = element.selectionEnd;
-
-      const spaceCount = 4;
-      const substitution = Array(spaceCount + 1).join(' ');
-
-      const updatedState = {};
-      updatedState[updateStateKey] = text.substring(0, start) + substitution + text.substring(end, text.length);
-
-      this.setState(updatedState, () => {
-        element.setSelectionRange(start + spaceCount, start + spaceCount);
-      });
-    }
+  handleTemplateInput(code) {
+    this.setState({ statement: code });
   }
 
-  handleTemplateInput(e) {
-    this.setState({ statement: e.target.value });
-  }
-
-  handleTemplateKeyDown(e) {
-    this.tab2space(e, 'statement');
-  }
-
-  handleContextInput(e) {
-    this.setState({ context: e.target.value });
-  }
-
-  handleContextKeyDown(e) {
-    this.tab2space(e, 'context')
+  handleContextInput(code) {
+    this.setState({ context: code });
   }
 
   handleSubmit(e) {
     e.preventDefault();
+
     if (!this.props.inSubmit) {
       this.props.stopNextCall()
       this.props.submit(this.state.statement, this.state.context.trim());
@@ -62,6 +38,20 @@ class InputField extends React.Component {
   render() {
     const { inSubmit, errorType } = this.props;
 
+    const statementOptions = {
+      mode: 'jinja2',
+      lineNumbers: true,
+      lineWrapping: true,
+      placeholder: "{% if foo == 'bar' %}Nice to meet you.{% else %}Hello.{% endif %}",
+    };
+
+    const contextOptions = {
+      mode: 'python',
+      lineNumbers: true,
+      lineWrapping: true,
+      placeholder: "{ 'foo': 'bar', 'list_a': ['b': 'c'] }",
+    };
+
     return (
       <div className="input-field-container">
         <form>
@@ -69,15 +59,13 @@ class InputField extends React.Component {
             <div className="col">
               <h3>Template Statement</h3>
               <div className="form-group">
-                <textarea
-                  className={`form-control fixed ${errorType === 'template' && 'is-invalid'}`}
-                  rows="16"
-                  placeholder="{% if foo == 'bar' %}Nice to meet you.{% else %}Hello.{% endif %}"
+                <CodeMirror
+                  className={`statement-editor ${errorType === 'template' && 'is-invalid'}`}
+                  options={statementOptions}
                   autoFocus
                   value={this.state.statement}
                   onChange={this.handleTemplateInput.bind(this)}
-                  onKeyDown={this.handleTemplateKeyDown.bind(this)}
-                ></textarea>
+                />
               </div>
             </div>
             <div className="col">
@@ -92,15 +80,13 @@ class InputField extends React.Component {
                     <ReactTooltip id="context-object-description">
                       Input Python dict object
                     </ReactTooltip>
-                    <textarea
-                      className={`form-control ${errorType === 'context' && 'is-invalid'}`}
-                      id="context-input"
-                      rows="12"
-                      placeholder="{ 'foo': 'bar', 'list_a': ['b': 'c'] }"
+                    <CodeMirror
+                      className={`context-editor ${errorType === 'context' && 'is-invalid'}`}
+                      options={contextOptions}
+                      defaultValue="{}"
                       value={this.state.context}
                       onChange={this.handleContextInput.bind(this)}
-                      onKeyDown={this.handleContextKeyDown.bind(this)}
-                    ></textarea>
+                    />
                   </div>
                 </div>
               </div>

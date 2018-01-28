@@ -34,3 +34,39 @@ textarea {
     margin-top: 15px;
   }
 }
+
+.CodeMirror {
+  border: 1px solid lightgray;
+
+  .CodeMirror-placeholder {
+    color: gray;
+  }
+}
+
+.statement-editor {
+
+  .CodeMirror {
+    height: 390px;
+  }
+
+  &.is-invalid {
+
+    .CodeMirror {
+      border-color: #DF382C,
+    }
+  }
+}
+
+.context-editor {
+
+  .CodeMirror {
+    height: 300px;
+  }
+
+  &.is-invalid {
+
+    .CodeMirror {
+      border-color: #DF382C,
+    }
+  }
+}
