@@ -56,7 +56,7 @@ class InputField extends React.Component {
       <div className="input-field-container">
         <form>
           <div className="row">
-            <div className="col">
+            <div className="col-md">
               <h3>Template Statement</h3>
               <div className="form-group">
                 <CodeMirror
@@ -68,7 +68,7 @@ class InputField extends React.Component {
                 />
               </div>
             </div>
-            <div className="col">
+            <div className="col-md">
               <h3 data-tip data-for="context-title">Context Settings</h3>
               <ReactTooltip id="context-title">
                 Set your context object used for rendering.
