@@ -83,7 +83,7 @@ class InputField extends React.Component {
                     <CodeMirror
                       className={`context-editor ${errorType === 'context' && 'is-invalid'}`}
                       options={contextOptions}
-                      defaultValue="{}"
+                      defaultValue={"{" + "\n" + "}"}
                       value={this.state.context}
                       onChange={this.handleContextInput.bind(this)}
                     />
