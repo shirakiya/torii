@@ -2,7 +2,7 @@ working_directory: &working_directory ~/torii
 pip:
   restore_cache: &pip_restore_cache
     keys:
-      - pip-v1-{{ .Branch }}-{{ checksum "api/equirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
+      - pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
       - pip-v1-{{ .Branch }}-
       - pip-v1-
 
@@ -20,6 +20,27 @@ pip:
 
 version: 2
 jobs:
+  python-test:
+    working_directory: *working_directory
+    docker:
+      - image: circleci/python:3.6.3
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *pip_restore_cache
+      - run:
+          <<: *pip_install
+      - save_cache:
+          <<: *pip_save_cache
+      - run:
+          name: Run tests
+          command: |
+            . ~/venv/bin/activate
+            cd ./api
+            ./../.circleci/nosetests.sh tests
+      - store_test_results:
+          path: api/dist
+
   flake8:
     working_directory: *working_directory
     docker:
@@ -42,4 +63,5 @@ workflows:
   version: 2
   test:
     jobs:
+      - python-test
       - flake8

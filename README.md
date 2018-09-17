@@ -20,6 +20,18 @@ $ docker-compose up
 ```
 
 
+## Test
+### Python tests
+```
+$ docker-compose exec -e ENV=test api nosetests -s --nologcapture tests
+```
+
+### flake8 lint
+```
+$ docker-compose exec api flake8 .
+```
+
+
 ## Deploy
 In production, use API Gateway & Lambda for api, and S3 & CloudFront for hosting static files.
 
