@@ -1,4 +1,6 @@
 # Torii
+[![CircleCI](https://circleci.com/gh/shirakiya/torii.svg?style=svg)](https://circleci.com/gh/shirakiya/torii)  
+  
 Pratical tool to test Jinja2.
 
 
