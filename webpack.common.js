@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const distPath = path.resolve(__dirname);
+const distPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
   entry: {

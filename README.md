@@ -44,15 +44,5 @@ $ zappa {deploy|update}  # once operate "deploy", use "update"
 ```
 
 
-### index.html
-```
-$ aws s3 cp index.html s3://<backet name>/index.html
-```
-
-
-### Build JavaScript
-```
-$ docker-compose up webpack  # if not running webpack container
-$ docker-compose exec -e API_URL=<API Gateway URL> webpack npm run build:production  #=> product "./app.js"
-$ aws s3 cp app.js s3://<backet name>/app.js
-```
+### index.html & Bundled JavaScript
+Deploy in the CircleCI workflow. See CircleCI configuration.
