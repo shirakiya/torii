@@ -1,0 +1,45 @@
+working_directory: &working_directory ~/torii
+pip:
+  restore_cache: &pip_restore_cache
+    keys:
+      - pip-v1-{{ .Branch }}-{{ checksum "api/equirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
+      - pip-v1-{{ .Branch }}-
+      - pip-v1-
+
+  install:  &pip_install
+    name: Install pip packages
+    command: |
+      python3 -m venv ~/venv
+      . ~/venv/bin/activate
+      pip install -r api/requirements-dev.txt
+
+  save_cache: &pip_save_cache
+    key: pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
+    paths:
+      - ~/venv
+
+version: 2
+jobs:
+  flake8:
+    working_directory: *working_directory
+    docker:
+      - image: circleci/python:3.6.3
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *pip_restore_cache
+      - run:
+          <<: *pip_install
+      - save_cache:
+          <<: *pip_save_cache
+      - run:
+          name: Run flake8
+          command: |
+            . ~/venv/bin/activate
+            flake8 ./api
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - flake8
