@@ -29,17 +29,20 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           'presets': [
-            ['env', {
-              'targets': {
-                'browsers': [
-                  'last 2 versions',
-                ],
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  browsers: [
+                    'last 2 versions',
+                    'Chrome >= 41',
+                  ],
+                },
+                modules: false,
+                useBuiltIns: 'usage',
               },
-            }],
-            'react',
-          ],
-          'plugins': [
-            'babel-plugin-transform-object-rest-spread',
+            ],
+            '@babel/preset-react',
           ],
         },
       },
