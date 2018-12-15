@@ -1,4 +1,7 @@
 working_directory: &working_directory ~/torii
+images:
+  python: &python_image circleci/python:3.6.3
+  nodejs: &nodejs_image circleci/node:10.14
 pip:
   restore_cache: &pip_restore_cache
     keys:
@@ -39,7 +42,7 @@ jobs:
   python-test:
     working_directory: *working_directory
     docker:
-      - image: circleci/python:3.6.3
+      - image: *python_image
     steps:
       - checkout
       - restore_cache:
@@ -60,7 +63,7 @@ jobs:
   flake8:
     working_directory: *working_directory
     docker:
-      - image: circleci/python:3.6.3
+      - image: *python_image
     steps:
       - checkout
       - restore_cache:
@@ -78,7 +81,7 @@ jobs:
   build-assets:
     working_directory: *working_directory
     docker:
-      - image: circleci/node:10.14
+      - image: *nodejs_image
     steps:
       - checkout
       - restore_cache:
@@ -98,7 +101,7 @@ jobs:
   deploy-assets:
     working_directory: *working_directory
     docker:
-      - image: circleci/python:3.6.3
+      - image: *python_image
     steps:
       - checkout
       - run:
