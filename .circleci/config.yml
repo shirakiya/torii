@@ -20,16 +20,16 @@ pip:
 npm:
   restore_cache: &npm_restore_cache
     keys:
-      - npm-v1-{{ .Branch }}-{{ checksum "package.json" }}
-      - npm-v1-{{ .Branch }}-
-      - npm-v1-
+      - npm-v2-{{ .Branch }}-{{ checksum "package.json" }}
+      - npm-v2-{{ .Branch }}-
+      - npm-v2-
 
   install: &npm_install
     name: Install npm modules
     command: npm install
 
   save_cache: &npm_save_cache
-    key: npm-v1-{{ .Branch }}-{{ checksum "package.json" }}
+    key: npm-v2-{{ .Branch }}-{{ checksum "package.json" }}
     paths:
       - ./node_modules
 
@@ -78,7 +78,7 @@ jobs:
   build-assets:
     working_directory: *working_directory
     docker:
-      - image: circleci/node:8.12.0
+      - image: circleci/node:10.14
     steps:
       - checkout
       - restore_cache:
