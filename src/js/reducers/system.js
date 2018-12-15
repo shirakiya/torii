@@ -6,22 +6,22 @@ const initialState = {
 
 export default function system(state = initialState, action) {
   switch (action.type) {
-    case types.STOPNEXTCALL: {
-      return Object.assign({}, state, {
-        inCallingAPI: true,
-      });
-    }
-    case types.SUBMIT: {
-      return Object.assign({}, state, {
-        inCallingAPI: false,
-      });
-    }
-    case types.SUBMIT_ERROR: {
-      return Object.assign({}, state, {
-        inCallingAPI: false,
-      });
-    }
-    default:
-      return state;
+  case types.STOPNEXTCALL: {
+    return Object.assign({}, state, {
+      inCallingAPI: true,
+    });
+  }
+  case types.SUBMIT: {
+    return Object.assign({}, state, {
+      inCallingAPI: false,
+    });
+  }
+  case types.SUBMIT_ERROR: {
+    return Object.assign({}, state, {
+      inCallingAPI: false,
+    });
+  }
+  default:
+    return state;
   }
 }

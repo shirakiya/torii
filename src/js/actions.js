@@ -23,8 +23,8 @@ export default {
         dispatch({
           type: types.SUBMIT_ERROR,
           data: err.response.data,
-      })
+        });
       });
-    }
+    };
   },
 };

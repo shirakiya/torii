@@ -30,7 +30,7 @@ class InputField extends React.Component {
     e.preventDefault();
 
     if (!this.props.inSubmit) {
-      this.props.stopNextCall()
+      this.props.stopNextCall();
       this.props.submit(this.state.statement, this.state.context.trim());
     }
   }
@@ -42,14 +42,14 @@ class InputField extends React.Component {
       mode: 'jinja2',
       lineNumbers: true,
       lineWrapping: true,
-      placeholder: "{% if foo == 'bar' %}Nice to meet you.{% else %}Hello.{% endif %}",
+      placeholder: '{% if foo == "bar" %}Nice to meet you.{% else %}Hello.{% endif %}',
     };
 
     const contextOptions = {
       mode: 'python',
       lineNumbers: true,
       lineWrapping: true,
-      placeholder: "{ 'foo': 'bar', 'list_a': ['b': 'c'] }",
+      placeholder: '{ "foo": "bar", "list_a": ["b": "c"] }',
     };
 
     return (
@@ -83,7 +83,7 @@ class InputField extends React.Component {
                     <CodeMirror
                       className={`context-editor ${errorType === 'context' && 'is-invalid'}`}
                       options={contextOptions}
-                      defaultValue={"{" + "\n" + "}"}
+                      defaultValue={'{' + '\n' + '}'}
                       value={this.state.context}
                       onChange={this.handleContextInput.bind(this)}
                     />

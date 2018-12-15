@@ -8,7 +8,7 @@ class ResultField extends React.Component {
   }
 
   nl2br(text) {
-    const regexp = /(\n)/g
+    const regexp = /(\n)/g;
     return text.split(regexp).map((line, index) => {
       if (line.match(regexp)) {
         return (<br key={index} />);
