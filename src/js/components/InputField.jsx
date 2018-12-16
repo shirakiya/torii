@@ -5,25 +5,36 @@ import CodeMirror from 'react-codemirror';
 import 'codemirror/mode/jinja2/jinja2';
 import 'codemirror/mode/python/python';
 import 'codemirror/addon/display/placeholder';
+import LocalStorage from './../utils/localStorage.js';
 
 
 class InputField extends React.Component {
 
   constructor(props) {
     super(props);
+    this.localStorage = new LocalStorage();
+
+    const initialStatement = this.localStorage.getItem('statement') || '';
+    const initialContext = this.localStorage.getItem('context') || '{\n}';
 
     this.state = {
-      statement: this.props.statement,
-      context: this.props.context,
+      statement: this.props.statement || initialStatement,
+      context: this.props.context || initialContext,
     };
+  }
+
+  _store(key, value) {
+    this.localStorage.setItem(key, value);
   }
 
   handleTemplateInput(code) {
     this.setState({ statement: code });
+    this._store('statement', code);
   }
 
   handleContextInput(code) {
     this.setState({ context: code });
+    this._store('context', code);
   }
 
   handleSubmit(e) {
@@ -54,7 +65,7 @@ class InputField extends React.Component {
 
     return (
       <div className="input-field-container">
-        <form>
+        <form autoComplete="on">
           <div className="row">
             <div className="col-md">
               <h3>Template Statement</h3>
@@ -83,7 +94,6 @@ class InputField extends React.Component {
                     <CodeMirror
                       className={`context-editor ${errorType === 'context' && 'is-invalid'}`}
                       options={contextOptions}
-                      defaultValue={'{' + '\n' + '}'}
                       value={this.state.context}
                       onChange={this.handleContextInput.bind(this)}
                     />

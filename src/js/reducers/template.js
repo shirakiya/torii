@@ -2,7 +2,7 @@ import * as types from './../constants/actionTypes.js';
 
 const initialState = {
   statement: '',
-  context: '{}',
+  context: '',
   rendered: null,
 };
 
