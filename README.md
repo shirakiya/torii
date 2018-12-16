@@ -23,7 +23,7 @@ $ docker-compose up
 ## Test
 ### Python tests
 ```
-$ docker-compose exec -e ENV=test api nosetests -s --nologcapture tests
+$ docker-compose exec -e FLASK_ENV=test api nosetests -s --nologcapture tests
 ```
 
 ### flake8 lint

@@ -1,5 +1,5 @@
 import os
-from logging import getLogger, CRITICAL, Formatter, StreamHandler, DEBUG, INFO
+from logging import CRITICAL, DEBUG, INFO, Formatter, StreamHandler, getLogger
 
 
 def create_logger():
@@ -9,7 +9,7 @@ def create_logger():
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
 
-    env = os.getenv('ENV')
+    env = os.getenv('FLASK_ENV')
     if env == 'development':
         logger.setLevel(DEBUG)
     elif env == 'test':

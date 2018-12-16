@@ -4,7 +4,7 @@
     "apigateway_description": "Torii API. Rendering with Jinja2.",
     "app_function": "app.app",
     "aws_environment_variables": {
-      "ENV": "production"
+      "FLASK_ENV": "production"
     },
     "aws_region": "ap-northeast-1",
     "cloudwatch_log_level": "INFO",

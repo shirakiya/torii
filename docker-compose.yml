@@ -25,8 +25,7 @@ services:
     image: python:3.6.3
     environment:
       - FLASK_APP=/app/app.py
-      - FLASK_DEBUG=1
-      - ENV=development
+      - FLASK_ENV=development
     ports:
       - "5000:5000"
     volumes:

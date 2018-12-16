@@ -1,12 +1,20 @@
 import json
+import os
 import traceback
-from flask import Flask, request, make_response, jsonify
+
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
 from jinja2 import TemplateError
 
-from logger import logger
-from exceptions import ContextValueError
-from rendering import render
+from exceptions import ContextValueError  # isort:skip
+from logger import logger  # isort:skip
+from rendering import render  # isort:skip
+
+ERROR_TYPE_TEMPLATE = 'template'
+ERROR_TYPE_CONTEXT = 'context'
+ERROR_TYPE_OTHER = 'other'
 
 app = Flask(__name__)
 CORS(app, origins=[
@@ -14,9 +22,12 @@ CORS(app, origins=[
     r'https?://torii.shirakiya.com',  # Change URL if you want to host site yourself.
 ])
 
-ERROR_TYPE_TEMPLATE = 'template'
-ERROR_TYPE_CONTEXT = 'context'
-ERROR_TYPE_OTHER = 'other'
+xray_recorder.configure(
+    service='torii',
+    sampling=os.getenv('FLASK_ENV', 'production') == 'production',
+    context_missing='LOG_ERROR',
+)
+XRayMiddleware(app, xray_recorder)
 
 
 def log_error():

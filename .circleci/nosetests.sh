@@ -2,7 +2,7 @@
 
 set -u -e -o pipefail
 
-export ENV=test
+export FLASK_ENV=test
 
 XUNIT_DIR=dist/
 
