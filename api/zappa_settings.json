@@ -21,6 +21,7 @@
     "tags": {
       "Project": "Torii"
     },
-    "timeout_seconds": 15
+    "timeout_seconds": 15,
+    "xray_tracing": true
   }
 }
