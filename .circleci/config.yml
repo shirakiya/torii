@@ -119,6 +119,33 @@ jobs:
             aws s3 cp index.html s3://torii-public/index.html
             aws s3 cp ./dist/app.js s3://torii-public/app.js
 
+  deploy-api:
+    working_directory: *working_directory
+    docker:
+      - image: *python_image
+    steps:
+      - checkout
+      - run:
+          name: Install pip packages
+          command: |
+            python3 -m venv ~/venv
+            . ~/venv/bin/activate
+            pip install -r api/requirements.txt
+            pip install zappa==0.47.1
+      - run:
+          name: Deploy with Zappa
+          command: |
+            . ~/venv/bin/activate
+            cd api/
+            zappa update prod
+      - run:
+          name: Deploy with Zappa
+          command: |
+            . ~/venv/bin/activate
+            cd api/
+            zappa deploy prod
+          when: on_fail
+
 workflows:
   version: 2
   test-and-deploy:
@@ -140,6 +167,13 @@ workflows:
             branches:
               only: production
       - deploy-assets:
+          context: shirakiya-IAM-CircleCI-user
+          requires:
+            - approve
+          filters:
+            branches:
+              only: production
+      - deploy-api:
           context: shirakiya-IAM-CircleCI-user
           requires:
             - approve
