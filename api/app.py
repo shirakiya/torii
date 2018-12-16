@@ -1,8 +1,8 @@
 import json
-import os
 import traceback
 
-from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.core import patch_all, xray_recorder
+from aws_xray_sdk.core.context import Context
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
@@ -24,10 +24,12 @@ CORS(app, origins=[
 
 xray_recorder.configure(
     service='torii',
-    sampling=os.getenv('FLASK_ENV', 'production') == 'production',
+    sampling=False,
+    context=Context(),
     context_missing='LOG_ERROR',
 )
 XRayMiddleware(app, xray_recorder)
+patch_all()
 
 
 def log_error():
