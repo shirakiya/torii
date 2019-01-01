@@ -118,6 +118,7 @@ jobs:
             . ~/venv/bin/activate
             aws s3 cp index.html s3://torii-public/index.html
             aws s3 cp ./dist/app.js s3://torii-public/app.js
+            aws s3 cp ./dist/app.css s3://torii-public/app.css
 
   deploy-api:
     working_directory: *working_directory
