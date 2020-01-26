@@ -5,7 +5,7 @@ Pratical tool to test Jinja2.
 
 
 ## Required
-- Python >= 3.6
+- Python >= 3.7
 - Docker & Docker Compose
 
 

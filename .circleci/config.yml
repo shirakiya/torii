@@ -37,7 +37,7 @@ version: 2.1
 executors:
   python:
     docker:
-      - image: circleci/python:3.6.3
+      - image: circleci/python:3.7.6
     working_directory: ~/torii
   nodejs:
     docker:

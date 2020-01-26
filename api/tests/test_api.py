@@ -1,7 +1,7 @@
 import json
 from unittest import TestCase
 
-from app import app
+from torii_api.app import app
 
 
 class ApiTestCase(TestCase):

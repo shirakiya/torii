@@ -3,8 +3,8 @@ from unittest import TestCase
 from jinja2.exceptions import TemplateSyntaxError
 from parameterized import parameterized
 
-from exceptions import ContextValueError  # isort:skip
-from rendering import render  # isort:skip
+from torii_api.exceptions import ContextValueError
+from torii_api.rendering import render
 
 
 class RenderTestCase(TestCase):

@@ -8,9 +8,9 @@ from flask import Flask, jsonify, make_response, request
 from flask_cors import CORS
 from jinja2 import TemplateError
 
-from exceptions import ContextValueError  # isort:skip
-from logger import logger  # isort:skip
-from rendering import render  # isort:skip
+from .exceptions import ContextValueError  # isort:skip
+from .logger import logger  # isort:skip
+from .rendering import render  # isort:skip
 
 ERROR_TYPE_TEMPLATE = 'template'
 ERROR_TYPE_CONTEXT = 'context'
@@ -66,7 +66,3 @@ def render_jinja():
         return make_error_response(str(e), e.__class__.__name__, ERROR_TYPE_TEMPLATE)
     except Exception as e:
         return make_error_response(str(e), e.__class__.__name__, ERROR_TYPE_OTHER)
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)

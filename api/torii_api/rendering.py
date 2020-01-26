@@ -3,7 +3,7 @@ import ast
 from aws_xray_sdk.core import xray_recorder
 from jinja2 import Template
 
-from exceptions import ContextValueError  # isort:skip
+from .exceptions import ContextValueError
 
 
 def _cast_dict(context_text):

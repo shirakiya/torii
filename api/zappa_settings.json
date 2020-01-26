@@ -2,7 +2,7 @@
   "prod": {
     "apigateway_enabled": true,
     "apigateway_description": "Torii API. Rendering with Jinja2.",
-    "app_function": "app.app",
+    "app_function": "app.torii_app.app",
     "aws_environment_variables": {
       "FLASK_ENV": "production"
     },
@@ -16,7 +16,7 @@
     "lambda_description": "Torii function - Rendering with Jinja2.",
     "memory_size": 128,
     "project_name": "torii",
-    "runtime": "python3.6",
+    "runtime": "python3.7",
     "s3_bucket": "torii-private",
     "tags": {
       "Project": "Torii"
