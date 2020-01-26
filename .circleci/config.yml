@@ -77,7 +77,25 @@ jobs:
           name: Run flake8
           command: |
             . ~/venv/bin/activate
-            flake8 ./api
+            cd api/
+            flake8 .
+
+  isort:
+    executor: python
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *pip_restore_cache
+      - run:
+          <<: *pip_install
+      - save_cache:
+          <<: *pip_save_cache
+      - run:
+          name: Run isort check
+          command: |
+            . ~/venv/bin/activate
+            cd api/
+            isort --recursive --check-only .
 
   build-assets:
     executor: nodejs
@@ -148,6 +166,7 @@ workflows:
     jobs:
       - python-test
       - flake8
+      - isort
       - build-assets:
           requires:
             - python-test
