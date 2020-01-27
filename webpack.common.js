@@ -9,7 +9,7 @@ module.exports = {
     app: './src/js/entry.js',
   },
   plugins: [
-    new CleanWebpackPlugin([distPath]),
+    new CleanWebpackPlugin(),
   ],
   output: {
     filename: '[name].js',
