@@ -27,8 +27,9 @@ services:
       context: ./api
       dockerfile: Dockerfile
       target: dev
+    image: torii-api-dev
     container_name: torii-api
     ports:
       - "5000:5000"
     volumes:
-      - ./api/torii_api:/opt/torii_api:ro
+      - ./api:/opt/torii_api:ro

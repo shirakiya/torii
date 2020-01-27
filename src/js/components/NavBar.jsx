@@ -33,13 +33,13 @@ const NavBar = () => (
             <div className="dropdown-menu" aria-labelledby="navbar-information">
               <a
                 className="dropdown-item"
-                href="https://docs.python.jp/3.6/"
+                href="https://docs.python.jp/3.8/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >Python version: 3.6</a>
+              >Python version: 3.8</a>
               <a
                 className="dropdown-item"
-                href="http://jinja.pocoo.org/docs/2.10/"
+                href="https://jinja.palletsprojects.com/en/2.10.x/"
                 target="_blank"
                 rel="noopener noreferrer"
               >Jinja2 version: 2.10</a>

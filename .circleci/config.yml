@@ -145,7 +145,6 @@ jobs:
             python3 -m venv ~/venv
             . ~/venv/bin/activate
             pip install -r api/requirements.txt
-            pip install zappa==0.47.1
       - run:
           name: Deploy with Zappa
           command: |
