@@ -41,7 +41,7 @@ executors:
     working_directory: ~/torii
   nodejs:
     docker:
-      - image: circleci/node:10.14
+      - image: circleci/node:12.14.1
 
 jobs:
   python-test:
@@ -96,6 +96,20 @@ jobs:
             . ~/venv/bin/activate
             cd api/
             isort --recursive --check-only .
+
+  eslint:
+    executor: nodejs
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *npm_restore_cache
+      - run:
+          <<: *npm_install
+      - save_cache:
+          <<: *npm_save_cache
+      - run:
+          name: Run eslint check
+          command: npm run lint
 
   build-assets:
     executor: nodejs
@@ -166,6 +180,7 @@ workflows:
       - python-test
       - flake8
       - isort
+      - eslint
       - build-assets:
           requires:
             - python-test
