@@ -2,7 +2,7 @@
   "prod": {
     "apigateway_enabled": true,
     "apigateway_description": "Torii API. Rendering with Jinja2.",
-    "app_function": "app.torii_app.app",
+    "app_function": "torii_api.app.app",
     "aws_environment_variables": {
       "FLASK_ENV": "production"
     },
