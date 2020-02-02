@@ -32,4 +32,4 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./api:/opt/torii_api:ro
+      - ./api:/opt/torii_api
