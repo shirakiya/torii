@@ -11,7 +11,7 @@ export default {
 
   submit: (statement, context) => {
     return (dispatch) => {
-      post('/render', {
+      post('/api/render', {
         statement: statement,
         context: context,
       }).then(res => {

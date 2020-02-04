@@ -5,7 +5,6 @@ from aws_xray_sdk.core import patch_all, xray_recorder
 from aws_xray_sdk.core.context import Context
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 from flask import Flask, jsonify, make_response, request
-from flask_cors import CORS
 from jinja2 import TemplateError
 
 from .exceptions import ContextValueError  # isort:skip
@@ -17,10 +16,6 @@ ERROR_TYPE_CONTEXT = 'context'
 ERROR_TYPE_OTHER = 'other'
 
 app = Flask(__name__)
-CORS(app, origins=[
-    r'http://localhost.*',
-    r'https?://torii.shirakiya.com',  # Change URL if you want to host site yourself.
-])
 
 xray_recorder.configure(
     service='torii',
@@ -46,7 +41,7 @@ def make_error_response(error_message, error_class_name, error_type=ERROR_TYPE_O
     }), 500)
 
 
-@app.route('/render', methods=['POST'])
+@app.route('/api/render', methods=['POST'])
 def render_jinja():
     try:
         params = request.json

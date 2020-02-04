@@ -11,7 +11,7 @@ class ApiTestCase(TestCase):
         self.client = app.test_client()
 
     def _post_render(self, params):
-        return self.client.post('/render',
+        return self.client.post('/api/render',
                                 data=json.dumps(params),
                                 content_type='application/json')
 

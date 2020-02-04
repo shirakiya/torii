@@ -10,7 +10,6 @@
     "cloudwatch_log_level": "INFO",
     "cloudwatch_data_trace": false,
     "cloudwatch_metrics_enabled": false,
-    "cors": true,
     "debug": false,
     "keep_warm": true,
     "lambda_description": "Torii function - Rendering with Jinja2.",
