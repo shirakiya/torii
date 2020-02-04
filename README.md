@@ -35,14 +35,16 @@ $ docker-compose exec api flake8 .
 ## Deploy
 In production, use API Gateway & Lambda for api, and S3 & CloudFront for hosting static files.
 
+### Infra
+managed by Terraform.
+
+```
+$ cd terraform/
+$ docker-compose run --rm -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY terraform apply
+```
 
 ### API Gateway & Lambda function with Zappa
-```
-$ cd <repository root>/api/
-$ pip install -r requirements.txt
-$ zappa {deploy|update}  # once operate "deploy", use "update"
-```
-
+Deploy in the CircleCI workflow. See CircleCI configuration.
 
 ### index.html & Bundled JavaScript
 Deploy in the CircleCI workflow. See CircleCI configuration.
