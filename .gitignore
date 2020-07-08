@@ -18,3 +18,5 @@ app.js
 *.tfvars
 *.tfstate
 *.tfstate.backup
+
+terraform/service_account_key.json

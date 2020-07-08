@@ -1,0 +1,45 @@
+# 1. build-assets
+# 2. build api container
+# 3. push container to GCR
+# 4. deploy to Cloud Run
+# 5. deploy assets to Firebase Hosting
+
+steps:
+  - name: node:12.14.1
+    entrypoint: npm
+    args:
+      - install
+  - name: node:12.14.1
+    entrypoint: npm
+    args:
+      - "run"
+      - "build:production"
+    env:
+      - API_URL=/
+  - name: gcr.io/kaniko-project/executor:v0.23.0
+    args:
+      - --context=api/
+      - --dockerfile=Dockerfile
+      - --target=default
+      - --destination=gcr.io/$PROJECT_ID/torii-api:$COMMIT_SHA
+      - --build-arg=COMMIT_SHA=$COMMIT_SHA
+      - --cache=true
+      # Two weeks
+      - --cache-ttl=336h
+  # # Deploy an image from Container Registry to Cloud Run
+  # - name: 'gcr.io/cloud-builders/gcloud'
+  #   args:
+  #     - 'run'
+  #     - 'deploy'
+  #     - '[SERVICE_NAME]'
+  #     - '--image'
+  #     - 'gcr.io/[PROJECT_ID]/[IMAGE]'
+  #     - '--region'
+  #     - '[REGION]'
+  #     - '--platform'
+  #     - 'managed'
+  #     - '--allow-unauthenticated'
+
+tags:
+  - build
+  - deploy
