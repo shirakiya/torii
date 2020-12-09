@@ -15,11 +15,6 @@ steps:
   #     - "-c"
   #     - "gcloud secrets versions access latest --secret=api_url --format='get(payload.data)' | tr '_-' '/+' | base64 -d > api_url.txt"
   - name: node:12.14.1
-    entrypoint: bash
-    args:
-      - "-c"
-      - "echo $$API_URL"
-  - name: node:12.14.1
     entrypoint: npm
     args:
       - "run"
@@ -46,18 +41,17 @@ steps:
       - --destination=gcr.io/$PROJECT_ID/torii-api:latest
       - --cache=true
       - --cache-ttl=336h
-   # - name: 'gcr.io/cloud-builders/gcloud'
-   #   args:
-   #     - 'run'
-   #     - 'deploy'
-   #     - '[SERVICE_NAME]'
-   #     - '--image'
-   #     - 'gcr.io/[PROJECT_ID]/[IMAGE]'
-   #     - '--region'
-   #     - '[REGION]'
-   #     - '--platform'
-   #     - 'managed'
-   #     - '--allow-unauthenticated'
+  - name: gcr.io/cloud-builders/gcloud
+    args:
+      - run
+      - deploy
+      - torii-app
+      - --image
+      - gcr.io/$PROJECT_ID/torii-api:$COMMIT_SHA
+      - --region
+      - asia-northeast1
+      - --platform
+      - managed
 
 
 secrets:

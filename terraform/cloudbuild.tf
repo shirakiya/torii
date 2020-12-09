@@ -13,3 +13,18 @@ resource "google_cloudbuild_trigger" "github_torii" {
 
   filename = "cloudbuild.yaml"
 }
+
+locals {
+  cloudbuild_roles = [
+    "roles/run.admin",
+    "roles/firebase.admin",
+    "roles/cloudkms.cryptoKeyDecrypter",
+  ]
+}
+
+resource "google_project_iam_binding" "cloudbuild" {
+  for_each = toset(local.cloudbuild_roles)
+  role     = each.value
+
+  members = ["serviceAccount:${local.project_number}@cloudbuild.gserviceaccount.com"]
+}
