@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   terraform:
-    image: hashicorp/terraform:0.12.28
+    image: hashicorp/terraform:0.13.5
     container_name: torii-terraform
     environment:
       - GOOGLE_CREDENTIALS=/opt/service_account_key.json
