@@ -16,10 +16,14 @@ steps:
       - "-c"
       - "gcloud secrets versions access latest --secret=api_url --format='get(payload.data)' | tr '_-' '/+' | base64 -d > api_url.txt"
   - name: node:12.14.1
-    entrypoint: bash
+    entrypoint: npm
     args:
-      - "-c"
-      - "API_URL=$(cat api_url.txt) npm run build:production"
+      - "run"
+      - "build:production"
+      # - "-c"
+      # - "API_URL=$(cat api_url.txt) npm run build:production"
+    secretEnv:
+      - "API_URL"
   - name: gcr.io/kaniko-project/executor:v0.23.0
     args:
       - --context=api/
@@ -37,7 +41,6 @@ steps:
       - --target=default
       - --destination=gcr.io/$PROJECT_ID/torii-api:latest
       - --cache=true
-      # Two weeks
       - --cache-ttl=336h
   # # Deploy an image from Container Registry to Cloud Run
   # - name: 'gcr.io/cloud-builders/gcloud'
@@ -52,6 +55,11 @@ steps:
   #     - '--platform'
   #     - 'managed'
   #     - '--allow-unauthenticated'
+
+secrets:
+ - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
+   secretEnv:
+     API_URL: "CiQA9WZzcMU1uVyv0gKgAMXkYtCIUMKrCiLRROHkeutxqiNLj/YSVQCxvTEqN0w8TjIoGw+xYERsjPhMvyGnr3zMZ1uUDODZK+z2NPifKAAU9BvjzD746cUJJbKLDxgcLFWY35LVrBdqe4si3QNyXVfopT+QL4tA6sc6/dw="
 
 tags:
   - build
