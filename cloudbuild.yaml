@@ -1,9 +1,3 @@
-# 1. build-assets
-# 2. build api container
-# 3. push container to GCR
-# 4. deploy to Cloud Run
-# 5. deploy assets to Firebase Hosting
-
 steps:
   - name: node:12.14.1
     entrypoint: npm
@@ -45,7 +39,7 @@ steps:
     args:
       - run
       - deploy
-      - torii-app
+      - torii-api
       - --image
       - gcr.io/$PROJECT_ID/torii-api:$COMMIT_SHA
       - --region
