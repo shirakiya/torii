@@ -9,12 +9,16 @@ steps:
     entrypoint: npm
     args:
       - install
-  # Ref. https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-secrets-credentials?hl=ja#using_the_encrypted_variable_in_build_requests
-  - name: gcr.io/cloud-builders/gcloud
-    entrypoint: "bash"
+  # - name: gcr.io/cloud-builders/gcloud
+  #   entrypoint: "bash"
+  #   args:
+  #     - "-c"
+  #     - "gcloud secrets versions access latest --secret=api_url --format='get(payload.data)' | tr '_-' '/+' | base64 -d > api_url.txt"
+  - name: node:12.14.1
+    entrypoint: bash
     args:
       - "-c"
-      - "gcloud secrets versions access latest --secret=api_url --format='get(payload.data)' | tr '_-' '/+' | base64 -d > api_url.txt"
+      - "echo $$API_URL"
   - name: node:12.14.1
     entrypoint: npm
     args:
@@ -42,19 +46,19 @@ steps:
       - --destination=gcr.io/$PROJECT_ID/torii-api:latest
       - --cache=true
       - --cache-ttl=336h
-  # # Deploy an image from Container Registry to Cloud Run
-  # - name: 'gcr.io/cloud-builders/gcloud'
-  #   args:
-  #     - 'run'
-  #     - 'deploy'
-  #     - '[SERVICE_NAME]'
-  #     - '--image'
-  #     - 'gcr.io/[PROJECT_ID]/[IMAGE]'
-  #     - '--region'
-  #     - '[REGION]'
-  #     - '--platform'
-  #     - 'managed'
-  #     - '--allow-unauthenticated'
+   # - name: 'gcr.io/cloud-builders/gcloud'
+   #   args:
+   #     - 'run'
+   #     - 'deploy'
+   #     - '[SERVICE_NAME]'
+   #     - '--image'
+   #     - 'gcr.io/[PROJECT_ID]/[IMAGE]'
+   #     - '--region'
+   #     - '[REGION]'
+   #     - '--platform'
+   #     - 'managed'
+   #     - '--allow-unauthenticated'
+
 
 secrets:
  - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
