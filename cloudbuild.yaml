@@ -15,8 +15,8 @@ steps:
       - "build:production"
       # - "-c"
       # - "API_URL=$(cat api_url.txt) npm run build:production"
-    secretEnv:
-      - "API_URL"
+      # secretEnv:
+      #   - "API_URL"
   - name: gcr.io/kaniko-project/executor:v0.23.0
     args:
       - --context=api/
@@ -54,10 +54,10 @@ steps:
       - --only
       - hosting
 
-secrets:
- - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
-   secretEnv:
-     API_URL: CiQA9WZzcMU1uVyv0gKgAMXkYtCIUMKrCiLRROHkeutxqiNLj/YSVQCxvTEqN0w8TjIoGw+xYERsjPhMvyGnr3zMZ1uUDODZK+z2NPifKAAU9BvjzD746cUJJbKLDxgcLFWY35LVrBdqe4si3QNyXVfopT+QL4tA6sc6/dw=
+# secrets:
+#  - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
+#    secretEnv:
+#      API_URL: CiQA9WZzcM92Q7gF5cfMO8Ef3AzAB5aOzMQ3E7ZhgfOP2ZEMQHISVQCxvTEqlh4NHqsZ5xfkntz7ZxzbAbig9QiPZTq44rmOzDiDNX+xjrqgc0GC24KPwMyLLnupZZM/7OPsg0t4zrW7cbkaufVEbEypUdN5GWiu5IER7eo=
 
 tags:
   - build
