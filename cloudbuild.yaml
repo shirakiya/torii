@@ -46,7 +46,13 @@ steps:
       - asia-northeast1
       - --platform
       - managed
-
+  - name: gcr.io/$PROJECT_ID/firebase
+    args:
+      - deploy
+      - --project
+      - $PROJECT_ID
+      - --only
+      - hosting
 
 secrets:
  - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
