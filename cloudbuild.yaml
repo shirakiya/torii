@@ -57,7 +57,7 @@ steps:
 secrets:
  - kmsKeyName: projects/torii-282017/locations/global/keyRings/main/cryptoKeys/app
    secretEnv:
-     API_URL: "CiQA9WZzcMU1uVyv0gKgAMXkYtCIUMKrCiLRROHkeutxqiNLj/YSVQCxvTEqN0w8TjIoGw+xYERsjPhMvyGnr3zMZ1uUDODZK+z2NPifKAAU9BvjzD746cUJJbKLDxgcLFWY35LVrBdqe4si3QNyXVfopT+QL4tA6sc6/dw="
+     API_URL: CiQA9WZzcMU1uVyv0gKgAMXkYtCIUMKrCiLRROHkeutxqiNLj/YSVQCxvTEqN0w8TjIoGw+xYERsjPhMvyGnr3zMZ1uUDODZK+z2NPifKAAU9BvjzD746cUJJbKLDxgcLFWY35LVrBdqe4si3QNyXVfopT+QL4tA6sc6/dw=
 
 tags:
   - build
