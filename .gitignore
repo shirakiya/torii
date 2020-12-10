@@ -6,12 +6,16 @@ __pycache__/
 # mypy
 .mypy_cache/
 
+# Firebase cache
+.firebase/
 
 # Project's ignore
 .env
 .envrc
 .python-version
-dist
+result.xml
+public/*.js
+public/*.css
 node_modules
 app.js
 .terraform
