@@ -6,9 +6,8 @@ resource "google_project_service" "cloudbuild" {
 # after this operation.
 resource "google_cloudbuild_trigger" "github_torii" {
   trigger_template {
-    repo_name = "github_shirakiya_torii"
-    # TODO: Fix branch to "production"
-    branch_name = "gcp"
+    repo_name   = "github_shirakiya_torii"
+    branch_name = "production"
   }
 
   filename = "cloudbuild.yaml"
