@@ -18,7 +18,6 @@ locals {
   cloudbuild_roles = [
     "roles/run.admin",
     "roles/firebase.admin",
-    "roles/cloudkms.cryptoKeyDecrypter",
   ]
 }
 

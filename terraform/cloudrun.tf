@@ -26,6 +26,12 @@ resource "google_cloud_run_service" "torii_api" {
       timeout_seconds = 10
     }
   }
+
+  lifecycle {
+    ignore_changes = [
+      template[0].spec[0].containers[0].image,
+    ]
+  }
 }
 
 data "google_iam_policy" "noauth" {
