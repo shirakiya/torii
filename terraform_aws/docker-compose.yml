@@ -1,10 +1,11 @@
 version: "3.7"
 services:
   terraform:
-    image: hashicorp/terraform:0.13.5
+    image: hashicorp/terraform:0.12.19
     container_name: torii-terraform
     environment:
-      - GOOGLE_CREDENTIALS=/opt/service_account_key.json
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
     volumes:
-      - .:/opt/
+      - ./src:/opt/
     working_dir: /opt/
