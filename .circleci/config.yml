@@ -124,10 +124,6 @@ jobs:
       - run:
           name: Build
           command: npm run build:production
-      - persist_to_workspace:
-          root: ./
-          paths:
-            - dist
 
 workflows:
   version: 2
