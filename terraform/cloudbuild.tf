@@ -5,9 +5,11 @@ resource "google_project_service" "cloudbuild" {
 # Need to connect GitHub repository to Cloud Source Repository
 # after this operation.
 resource "google_cloudbuild_trigger" "github_torii" {
+  name = "build-trigger"
+
   trigger_template {
     repo_name   = "github_shirakiya_torii"
-    branch_name = "production"
+    branch_name = "master"
   }
 
   filename = "cloudbuild.yaml"
