@@ -9,7 +9,7 @@ resource "google_cloudbuild_trigger" "github_torii" {
 
   trigger_template {
     repo_name   = "github_shirakiya_torii"
-    branch_name = "master"
+    branch_name = "production"
   }
 
   filename = "cloudbuild.yaml"
