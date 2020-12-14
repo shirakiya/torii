@@ -42,7 +42,7 @@ const NavBar = () => (
                 href="https://jinja.palletsprojects.com/en/2.10.x/"
                 target="_blank"
                 rel="noopener noreferrer"
-              >Jinja2 version: 2.10</a>
+              >Jinja2 version: 2.11</a>
               <a
                 className="dropdown-item"
                 href="https://twitter.com/shirakiya831"
