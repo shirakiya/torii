@@ -1,5 +1,3 @@
-RUN_CONTEXT_API ?= docker-compose exec api
-
 run:
 	docker-compose up
 
@@ -9,12 +7,12 @@ build/api:
 	docker-compose build api
 
 api/test:
-	$(RUN_CONTEXT_API) nosetests -v
+	docker-compose exec -e FLASK_ENV=test api nosetests -v
 
 api/lint: api/flake8 api/isort
 
 api/flake8:
-	$(RUN_CONTEXT_API) flake8 .
+	docker-compose exec api flake8 .
 
 api/isort:
-	$(RUN_CONTEXT_API) isort .
+	docker-compose exec api isort .

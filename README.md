@@ -4,11 +4,6 @@
 Pratical tool to test Jinja2.
 
 
-## Required
-- Python >= 3.7
-- Docker & Docker Compose
-
-
 ## SetUp
 No setup in local, Docker will do everything.
 
@@ -16,19 +11,19 @@ No setup in local, Docker will do everything.
 ## Running Application for Dev
 ```
 $ cd <repository root>
-$ docker-compose up
+$ make run
 ```
 
 
 ## Test
 ### Python tests
 ```
-$ docker-compose exec -e FLASK_ENV=test api nosetests -s --nologcapture tests
+$ make api/test
 ```
 
-### flake8 lint
+### lint for api codes
 ```
-$ docker-compose exec api flake8 .
+$ make api/lint
 ```
 
 
