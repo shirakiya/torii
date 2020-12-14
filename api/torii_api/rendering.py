@@ -1,6 +1,5 @@
 import ast
 
-from aws_xray_sdk.core import xray_recorder
 from jinja2 import Template
 
 from .exceptions import ContextValueError
@@ -17,7 +16,6 @@ def _cast_dict(context_text):
     return context
 
 
-@xray_recorder.capture('render')
 def render(template_text, context_text):
     try:
         context = _cast_dict(context_text)
