@@ -28,18 +28,15 @@ $ make api/lint
 
 
 ## Deploy
-In production, use API Gateway & Lambda for api, and S3 & CloudFront for hosting static files.
+In production, use Firebase Hosting and CloudRun. Static files are
+delivered from Firebase Hosting. API server is hosted in CloudRun.
 
 ### Infra
-managed by Terraform.
+managed by Terraform.  
+In order to enable to do provisioning by Terraform, do below steps.
 
-```
-$ cd terraform/
-$ docker-compose run --rm -e AWS_ACCESS_KEY_ID=XXX -e AWS_SECRET_ACCESS_KEY=YYY terraform apply
-```
+1. Create GCP project.
+2. Create a service account and get `service_account_key.json`.
+3. Put `service_account_key` to `terraform/`.
 
-### API Gateway & Lambda function with Zappa
-Deploy in the CircleCI workflow. See CircleCI configuration.
-
-### index.html & Bundled JavaScript
-Deploy in the CircleCI workflow. See CircleCI configuration.
+After these setup, terraform provisioning is available.
