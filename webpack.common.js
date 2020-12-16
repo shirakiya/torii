@@ -1,5 +1,6 @@
-/* global __dirname */
+/* global __dirname, process */
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const distPath = path.resolve(__dirname, 'public');
@@ -9,6 +10,11 @@ module.exports = {
     app: './src/js/entry.js',
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_URL': JSON.stringify(process.env.API_URL),
+      },
+    }),
     new CleanWebpackPlugin(),
   ],
   output: {
@@ -28,7 +34,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          'presets': [
+          presets: [
             [
               '@babel/preset-env',
               {

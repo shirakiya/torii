@@ -1,21 +1,15 @@
-/* global process */
-const webpack = require('webpack');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const common = require('./webpack.common.js');
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = merge.smart(common, {
+module.exports = merge(common, {
   mode: 'production',
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'API_URL': JSON.stringify(process.env.API_URL),
-      },
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css',
-      allChunks: true,
+      chunkFilename: '[id].css',
     }),
   ],
   optimization: {
@@ -23,8 +17,8 @@ module.exports = merge.smart(common, {
     minimizer: [
       new TerserPlugin({
         parallel: true,
-        sourceMap: true,
       }),
+      new CssMinimizerPlugin(),
     ],
   },
   module: {
