@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const distPath = path.resolve(__dirname, 'public');
 
@@ -16,6 +17,9 @@ module.exports = {
       },
     }),
     new CleanWebpackPlugin(),
+    new ESLintPlugin({
+      extensions: ['js', 'jsx'],
+    }),
   ],
   output: {
     filename: '[name].js',
@@ -23,12 +27,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader',
-      },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
