@@ -30,20 +30,26 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                modules: false,
-                useBuiltIns: 'usage',
-                corejs: 2
-              },
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: [
+                    'last 2 version',
+                    'not dead',
+                  ],
+                  modules: false,
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                },
+              ],
+              '@babel/preset-react',
             ],
-            '@babel/preset-react',
-          ],
-        },
+          },
+        }
       },
       {
         test: /\.(sass|scss|css)$/,
