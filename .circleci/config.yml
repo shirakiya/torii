@@ -41,7 +41,7 @@ executors:
     working_directory: ~/torii
   nodejs:
     docker:
-      - image: circleci/node:14.15.1
+      - image: circleci/node:14.15.3
 
 jobs:
   python-test:
