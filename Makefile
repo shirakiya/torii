@@ -1,10 +1,19 @@
 run:
 	docker-compose up
 
+bash/frontend:
+	docker-compose exec frontend /bin/bash
+
+bash/api:
+	docker-compose exec api /bin/bash
+
 build: build/api
 
 build/api:
 	docker-compose build api
+
+frontend/lint:
+	docker-compose exec frontend npm run lint
 
 api/test:
 	docker-compose exec -e FLASK_ENV=test api nosetests -v
