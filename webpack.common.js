@@ -1,7 +1,7 @@
 /* global __dirname, process */
 const path = require('path');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 const distPath = path.resolve(__dirname, 'public');
@@ -16,7 +16,15 @@ module.exports = {
         'API_URL': JSON.stringify(process.env.API_URL),
       },
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      verbose: true,
+      cleanOnceBeforeBuildPatterns: [
+        '**/*',
+        '!images',
+        '!images/*',
+        '!index.html',
+      ],
+    }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
     }),
