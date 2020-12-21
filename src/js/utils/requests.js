@@ -13,6 +13,6 @@ function getAxios() {
   });
 }
 
-export function post(endpoint, data = {}) {
-  return getAxios().post(endpoint, data);
+export function post(endpoint, data = {}, config = {}) {
+  return getAxios().post(endpoint, data, config);
 }
