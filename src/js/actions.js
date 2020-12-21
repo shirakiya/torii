@@ -14,6 +14,8 @@ export default {
       post('/api/render', {
         statement: statement,
         context: context,
+      }, {
+        timeout: 10000,
       }).then(res => {
         dispatch({
           type: types.SUBMIT,
