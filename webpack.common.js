@@ -11,6 +11,7 @@ module.exports = {
     app: './src/js/entry.js',
   },
   plugins: [
+    new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'API_URL': JSON.stringify(process.env.API_URL),
