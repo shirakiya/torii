@@ -42,7 +42,8 @@ executors:
   nodejs:
     docker:
       - image: circleci/node:14.15.1
-
+orbs:
+  terraform: 'circleci/terraform@1.1.0'
 jobs:
   python-test:
     executor: python
@@ -134,3 +135,6 @@ workflows:
       - isort
       - eslint
       - build-assets
+      - terraform/fmt:
+          checkout: true
+          path: terraform/
