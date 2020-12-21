@@ -2,10 +2,10 @@ run:
 	docker-compose up
 
 bash/frontend:
-	docker-compose exec frontend /bin/bash
+	docker-compose run --rm frontend /bin/bash
 
 bash/api:
-	docker-compose exec api /bin/bash
+	docker-compose run --rm api /bin/bash
 
 build: build/api
 
