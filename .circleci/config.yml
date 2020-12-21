@@ -34,6 +34,8 @@ npm:
 
 
 version: 2.1
+orbs:
+  terraform: 'circleci/terraform@1.1.0'
 executors:
   python:
     docker:
@@ -42,7 +44,6 @@ executors:
   nodejs:
     docker:
       - image: circleci/node:14.15.1
-
 jobs:
   python-test:
     executor: python
@@ -125,6 +126,13 @@ jobs:
           name: Build
           command: npm run build:production
 
+  terraform-validate:
+    executor: terraform/default
+    steps:
+      - checkout
+      - terraform/validate:
+          path: terraform/
+
 workflows:
   version: 2
   test:
@@ -134,3 +142,7 @@ workflows:
       - isort
       - eslint
       - build-assets
+      - terraform/fmt:
+          checkout: true
+          path: terraform/
+      - terraform-validate
