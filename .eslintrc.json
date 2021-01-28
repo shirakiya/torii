@@ -18,6 +18,10 @@
   "plugins": [
     "react"
   ],
+  "globals": {
+    "__dirname": "readable",
+    "process": "readable"
+  },
   "settings": {
     "react": {
       "version": "16.6"

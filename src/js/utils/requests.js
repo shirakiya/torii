@@ -1,4 +1,3 @@
-/* global process */
 import axios from 'axios';
 import { URL_PRODUCTION, URL_DEVELOPMENT } from './../constants/commons.js';
 
