@@ -10,30 +10,23 @@ module.exports = {
   entry: {
     app: './src/js/entry.js',
   },
+  output: {
+    filename: '[name].js',
+    path: distPath,
+    assetModuleFilename: 'images/[hash][ext][query]'
+  },
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.DefinePlugin({
-      'process.env': {
-        'API_URL': JSON.stringify(process.env.API_URL),
-      },
+      API_URL: JSON.stringify(process.env.API_URL),
     }),
     new CleanWebpackPlugin({
       verbose: true,
-      cleanOnceBeforeBuildPatterns: [
-        '**/*',
-        '!images',
-        '!images/*',
-        '!index.html',
-      ],
     }),
     new ESLintPlugin({
       extensions: ['js', 'jsx'],
     }),
   ],
-  output: {
-    filename: '[name].js',
-    path: distPath,
-  },
   module: {
     rules: [
       {
@@ -59,6 +52,10 @@ module.exports = {
             ],
           },
         }
+      },
+      {
+        test: /\.(ico|svg|jpe?g|png|webp)$/,
+        type: 'asset/resource',
       },
       {
         test: /\.(sass|scss|css)$/,

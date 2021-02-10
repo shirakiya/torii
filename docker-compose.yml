@@ -1,20 +1,11 @@
 version: "3.8"
 services:
-  nginx:
-    container_name: torii-nginx
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./index_dev.html:/usr/share/nginx/html/index.html:ro
-      - ./public:/usr/share/nginx/html/public:ro
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
   frontend:
     container_name: torii-frontend
     image: node:14.15.1-slim
     environment:
       - NODE_ENV=development
-      - API_URL
+      - API_URL=http://0.0.0.0:5000
     ports:
       - "5001:5001"
     volumes:

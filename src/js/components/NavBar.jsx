@@ -1,10 +1,11 @@
 import React from 'react';
+import ToriiImg from '../../assets/torii_512.png';
 
 const NavBar = () => (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
     <div className="container">
       <a className="navbar-brand" href="/">
-        <img src="/images/torii_512.png" alt="torii-logo" width="30" height="30" />
+        <img src={ToriiImg} alt="torii-logo" width="30" height="30" />
         Torii(鳥居) β
       </a>
       <button
