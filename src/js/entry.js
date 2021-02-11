@@ -5,6 +5,7 @@ import configureStore from './configureStore.js';
 import App from './App.jsx';
 import 'bootstrap';
 import './../css/main.scss';
+import './images.js';
 
 const store = configureStore();
 
