@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
-import CodeMirror from 'react-codemirror';
+import {Controlled as CodeMirror} from 'react-codemirror2';
 import 'codemirror/mode/jinja2/jinja2';
 import 'codemirror/mode/python/python';
 import 'codemirror/addon/display/placeholder';
@@ -27,12 +27,12 @@ class InputField extends React.Component {
     this.localStorage.setItem(key, value);
   }
 
-  handleTemplateInput(code) {
+  handleTemplateInput(editor, data, code) {
     this.setState({ statement: code });
     this._store('statement', code);
   }
 
-  handleContextInput(code) {
+  handleContextInput(editor, data, code) {
     this.setState({ context: code });
     this._store('context', code);
   }
@@ -75,6 +75,7 @@ class InputField extends React.Component {
                   options={statementOptions}
                   autoFocus
                   value={this.state.statement}
+                  onBeforeChange={this.handleTemplateInput.bind(this)}
                   onChange={this.handleTemplateInput.bind(this)}
                 />
               </div>
@@ -95,6 +96,7 @@ class InputField extends React.Component {
                       className={`context-editor ${errorType === 'context' && 'is-invalid'}`}
                       options={contextOptions}
                       value={this.state.context}
+                      onBeforeChange={this.handleContextInput.bind(this)}
                       onChange={this.handleContextInput.bind(this)}
                     />
                   </div>
