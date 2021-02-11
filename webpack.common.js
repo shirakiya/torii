@@ -13,7 +13,7 @@ module.exports = {
   output: {
     filename: '[name].js',
     path: distPath,
-    assetModuleFilename: 'images/[hash][ext][query]'
+    assetModuleFilename: 'images/[name][ext][query]'
   },
   plugins: [
     new webpack.ProgressPlugin(),
