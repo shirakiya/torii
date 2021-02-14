@@ -13,6 +13,7 @@ module.exports = merge(common, {
       filename: 'index.html',
       title: 'Torii(鳥居)',
       favicon: 'src/assets/favicon.ico',
+      inject: 'body',
       minify: false,
     }),
     new MiniCssExtractPlugin({
