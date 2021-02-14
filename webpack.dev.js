@@ -17,6 +17,7 @@ module.exports = merge(common, {
       filename: 'index.html',
       title: 'Torii(鳥居) | development',
       favicon: 'src/assets/favicon.ico',
+      inject: 'body',
     }),
   ],
 });
