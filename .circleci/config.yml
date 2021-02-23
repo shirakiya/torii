@@ -112,6 +112,22 @@ jobs:
           name: Run eslint check
           command: npm run lint
 
+  build:
+    executor: nodejs
+    steps:
+      - checkout
+      - restore_cache:
+          <<: *npm_restore_cache
+      - run:
+          <<: *npm_install
+      - save_cache:
+          <<: *npm_save_cache
+      - run:
+          name: Build webpack
+          command: npm run build:production
+      - store_artifacts:
+          path: public
+
 workflows:
   version: 2
   test:
@@ -120,6 +136,7 @@ workflows:
       - flake8
       - isort
       - eslint
+      - build
       - terraform/fmt:
           checkout: true
           path: terraform/
