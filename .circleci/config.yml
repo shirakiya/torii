@@ -1,22 +1,3 @@
-pip:
-  restore_cache: &pip_restore_cache
-    keys:
-      - pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
-      - pip-v1-{{ .Branch }}-
-      - pip-v1-
-
-  install:  &pip_install
-    name: Install pip packages
-    command: |
-      python3 -m venv ~/venv
-      . ~/venv/bin/activate
-      pip install -r api/requirements-dev.txt
-
-  save_cache: &pip_save_cache
-    key: pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
-    paths:
-      - ~/venv
-
 version: 2.1
 orbs:
   node: circleci/node@4.1.1
@@ -29,17 +10,31 @@ executors:
   nodejs:
     docker:
       - image: circleci/node:14.15.5
+commands:
+  install_pip_packages:
+    description: "install pip packages and caching"
+    steps:
+      - restore_cache:
+          keys:
+            - pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
+            - pip-v1-{{ .Branch }}-
+            - pip-v1-
+      - run:
+          name: Install pip packages
+          command: |
+            python3 -m venv ~/venv
+            . ~/venv/bin/activate
+            pip install -r api/requirements-dev.txt
+      - save_cache:
+          key: pip-v1-{{ .Branch }}-{{ checksum "api/requirements-dev.txt" }}-{{ checksum "api/requirements.txt" }}
+          paths:
+            - ~/venv
 jobs:
   python-test:
     executor: python
     steps:
       - checkout
-      - restore_cache:
-          <<: *pip_restore_cache
-      - run:
-          <<: *pip_install
-      - save_cache:
-          <<: *pip_save_cache
+      - install_pip_packages
       - run:
           name: Run tests
           command: |
@@ -53,12 +48,7 @@ jobs:
     executor: python
     steps:
       - checkout
-      - restore_cache:
-          <<: *pip_restore_cache
-      - run:
-          <<: *pip_install
-      - save_cache:
-          <<: *pip_save_cache
+      - install_pip_packages
       - run:
           name: Run flake8
           command: |
@@ -70,12 +60,7 @@ jobs:
     executor: python
     steps:
       - checkout
-      - restore_cache:
-          <<: *pip_restore_cache
-      - run:
-          <<: *pip_install
-      - save_cache:
-          <<: *pip_save_cache
+      - install_pip_packages
       - run:
           name: Run isort check
           command: |
