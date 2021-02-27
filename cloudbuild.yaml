@@ -10,7 +10,7 @@ steps:
       - "build:production"
     env:
       - "API_URL="
-  - name: gcr.io/kaniko-project/executor:v0.23.0
+  - name: gcr.io/kaniko-project/executor:v0.24.0
     args:
       - --context=api/
       - --dockerfile=Dockerfile
@@ -20,7 +20,7 @@ steps:
       - --cache=true
       # Two weeks
       - --cache-ttl=336h
-  - name: gcr.io/kaniko-project/executor:v0.23.0
+  - name: gcr.io/kaniko-project/executor:v0.24.0
     args:
       - --context=api/
       - --dockerfile=Dockerfile
