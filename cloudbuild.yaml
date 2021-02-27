@@ -1,9 +1,9 @@
 steps:
-  - name: node:14.15.1
+  - name: node:14.16.0
     entrypoint: npm
     args:
       - install
-  - name: node:14.15.1
+  - name: node:14.16.0
     entrypoint: npm
     args:
       - "run"
