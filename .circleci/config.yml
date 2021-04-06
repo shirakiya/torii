@@ -5,7 +5,7 @@ orbs:
 executors:
   python:
     docker:
-      - image: circleci/python:3.9.3
+      - image: circleci/python:3.9.4
     working_directory: ~/torii
   nodejs:
     docker:
