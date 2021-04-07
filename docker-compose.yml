@@ -2,7 +2,7 @@ version: "3.8"
 services:
   frontend:
     container_name: torii-frontend
-    image: node:14.16.0-slim
+    image: node:14.16.1-slim
     environment:
       - NODE_ENV=development
       - API_URL=http://0.0.0.0:5000
