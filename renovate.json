@@ -3,6 +3,7 @@
     "config:base"
   ],
   "automerge": true,
+  "bumpVersion": "minor",
   "labels": ["renovate"],
   "schedule": ["before 9am"],
   "timezone": "Asia/Tokyo"
