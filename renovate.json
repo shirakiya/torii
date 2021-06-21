@@ -5,6 +5,6 @@
   "automerge": true,
   "bumpVersion": "minor",
   "labels": ["renovate"],
-  "schedule": ["before 9am"],
+  "schedule": ["after 3pm and before 7pm"],
   "timezone": "Asia/Tokyo"
 }
