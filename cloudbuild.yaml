@@ -1,9 +1,9 @@
 steps:
-  - name: node:16.5.0
+  - name: node:16.6.0
     entrypoint: npm
     args:
       - install
-  - name: node:16.5.0
+  - name: node:16.6.0
     entrypoint: npm
     args:
       - "run"
