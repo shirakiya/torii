@@ -9,7 +9,7 @@
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.21.3",
     "bootstrap": "4.6.0",
     "bootswatch": "5.1.0",
     "codemirror": "5.62.3",
