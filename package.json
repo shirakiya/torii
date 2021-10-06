@@ -13,7 +13,7 @@
     "bootstrap": "4.6.0",
     "bootswatch": "5.1.2",
     "codemirror": "5.63.1",
-    "core-js": "3.18.1",
+    "core-js": "3.18.2",
     "jquery": "3.6.0",
     "popper.js": "1.16.1",
     "prop-types": "15.7.2",
