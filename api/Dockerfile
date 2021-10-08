@@ -1,4 +1,4 @@
-FROM python:3.9.7-slim as default
+FROM python:3.10.0-slim as default
 
 WORKDIR /opt/torii_api
 
