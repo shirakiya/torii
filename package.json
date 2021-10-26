@@ -23,7 +23,7 @@
     "react-redux": "7.2.6",
     "react-tooltip": "4.2.21",
     "redux": "4.1.1",
-    "redux-thunk": "2.3.0",
+    "redux-thunk": "2.4.0",
     "regenerator-runtime": "0.13.9"
   },
   "devDependencies": {
